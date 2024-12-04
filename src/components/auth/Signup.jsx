@@ -33,19 +33,19 @@ const Signup = () => {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
-    // const formData = new FormData();    //formdata object
-    // formData.append("fullname", input.fullname);
-    // formData.append("email", input.email);
-    // formData.append("phoneNumber", input.phoneNumber);
-    // formData.append("password", input.password);
-    // formData.append("role", input.role);
-    // if (input.file) {
-    //     formData.append("file", input.file);
-    // }
+    const formData = new FormData(); //formdata object
+    formData.append("fullname", input.fullname);
+    formData.append("email", input.email);
+    formData.append("phoneNumber", input.phoneNumber);
+    formData.append("password", input.password);
+    formData.append("role", input.role);
+    if (input.file) {
+      formData.append("file", input.file);
+    }
 
     try {
       dispatch(setLoading(true));
-      const res = await axios.post(`${USER_API_END_POINT}/register`, input, {
+      const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
@@ -82,7 +82,7 @@ const Signup = () => {
               value={input.fullname}
               name="fullname"
               onChange={changeEventHandler}
-              placeholder="patel"
+              placeholder="Example"
             />
           </div>
           <div className="my-2">
@@ -92,7 +92,7 @@ const Signup = () => {
               value={input.email}
               name="email"
               onChange={changeEventHandler}
-              placeholder="patel@gmail.com"
+              placeholder="example@gmail.com"
             />
           </div>
           <div className="my-2">
@@ -102,7 +102,7 @@ const Signup = () => {
               value={input.phoneNumber}
               name="phoneNumber"
               onChange={changeEventHandler}
-              placeholder="8080808080"
+              placeholder="9070021768"
             />
           </div>
           <div className="my-2">
@@ -112,7 +112,7 @@ const Signup = () => {
               value={input.password}
               name="password"
               onChange={changeEventHandler}
-              placeholder="patel@gmail.com"
+              placeholder="password@123"
             />
           </div>
           <div className="flex items-center justify-between">
